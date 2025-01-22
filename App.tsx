@@ -8,6 +8,8 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  Alert,
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -16,7 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import ReactNativeBiometrics, {BiometryTypes} from 'react-native-biometrics';
 import {
   Colors,
   DebugInstructions,
@@ -61,13 +63,32 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
+  const handleClick = async () => {
+    console.log(1224);
+    try {
+      const rnBiometrics = new ReactNativeBiometrics();
+      const biometryType1 = await rnBiometrics.isSensorAvailable();
+      const {biometryType, available} = await rnBiometrics.isSensorAvailable();
+      console.log(biometryType1);
+      if (available) {
+        Alert.alert('Hay dat 22221');
+      } else {
+        Alert.alert('Hay dat mat khau ngon tay');
+      }
+      if (biometryType === BiometryTypes.Biometrics) {
+        Alert.alert('Hay dat 2222zzzzz1');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
+      <Button title="add me" onPress={handleClick} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
@@ -77,7 +98,7 @@ function App(): React.JSX.Element {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            Edit <Text style={styles.highlight}>aaaaaaaaa</Text> to change this
             screen and then come back to see your edits.
           </Section>
           <Section title="See Your Changes">
