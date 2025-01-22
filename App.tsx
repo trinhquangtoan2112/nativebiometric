@@ -80,6 +80,8 @@ function App(): React.JSX.Element {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      console.log(1212142);
     }
   };
   return (
@@ -91,7 +93,7 @@ function App(): React.JSX.Element {
       <Button title="add me" onPress={handleClick} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+        style={[backgroundStyle]}>
         <Header />
         <View
           style={{
